@@ -1,10 +1,9 @@
 "use client";
 
 import { useLocations } from "@/context/LocationsContext";
-import LocationForm from "@/components/LocationForm";
 
 export default function Home() {
-  const { locations } = useLocations();
+  const { locations, addLocation } = useLocations();
 
   return (
     <main className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
@@ -12,7 +11,19 @@ export default function Home() {
         Konum Uygulaması
       </h1>
 
-      <LocationForm />
+      <button
+        onClick={() =>
+          addLocation({
+            id: Date.now(),
+            name: "Diyarbakır",
+            lat: 37.9144,
+            lng: 40.2306,
+          })
+        }
+        className="w-full py-3 bg-[#21445B] hover:bg-[#1b3651] text-white font-semibold rounded-md transition"
+      >
+        Yeni Konum Ekle
+      </button>
 
       <ul className="mt-8 space-y-4 max-h-[300px] overflow-y-auto">
         {locations.length === 0 && (
