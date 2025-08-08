@@ -12,6 +12,8 @@ type Location = {
 type LocationsContextType = {
   locations: Location[];
   addLocation: (location: Location) => void;
+  removeLocation: (id: number) => void;
+  editLocation: (updatedLocation: Location) => void;
 };
 
 const LocationsContext = createContext<LocationsContextType | undefined>(undefined);
@@ -39,8 +41,20 @@ export const LocationsProvider = ({ children }: { children: ReactNode }) => {
     setLocations((prev) => [...prev, location]);
   };
 
+  const removeLocation = (id: number) => {
+    setLocations((prev) => prev.filter((loc) => loc.id !== id));
+  };
+
+  const editLocation = (updatedLocation: Location) => {
+    setLocations((prev) =>
+      prev.map((loc) => (loc.id === updatedLocation.id ? updatedLocation : loc))
+    );
+  };
+
   return (
-    <LocationsContext.Provider value={{ locations, addLocation }}>
+    <LocationsContext.Provider
+      value={{ locations, addLocation, removeLocation, editLocation }}
+    >
       {children}
     </LocationsContext.Provider>
   );
