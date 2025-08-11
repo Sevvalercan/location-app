@@ -81,14 +81,14 @@ export default function LocationList() {
                 placeholder="Enlem"
               />
               <input
-                className="border rounded px-2 py-1 mb-2 md:mb-0 md:mr-2 w-24 min-w-[120px]"
+                className="border rounded px-2 py-1 mb-4 md:mb-0 md:mr-2 w-24 min-w-[120px]"
                 value={formData.lng}
                 onChange={(e) =>
                   setFormData({ ...formData, lng: e.target.value })
                 }
                 placeholder="Boylam"
               />
-              <div className="flex space-x-2 mt-2 md:mt-0">
+<div className="flex flex-wrap gap-2 mt-2 md:mt-4">
                 <button
                   onClick={saveEdit}
                   className="bg-green-600 text-white px-3 py-1 rounded min-w-[70px]"
@@ -105,11 +105,11 @@ export default function LocationList() {
             </>
           ) : (
             <>
-              <div className="flex-1">
-                <strong>{loc.name}</strong> — Enlem: {loc.lat.toFixed(4)} | Boylam:{" "}
-                {loc.lng.toFixed(4)}
+              <div className="flex-1 ">
+                <strong>{loc.name}</strong> — Enlem: {loc.lat.toFixed(4)} |
+                Boylam: {loc.lng.toFixed(4)}
               </div>
-              <div className="mt-2 md:mt-0 flex space-x-2">
+              <div className="mt- md:mt-0 flex space-x-2">
                 <button
                   onClick={() => startEdit(loc)}
                   className="bg-yellow-500 text-white px-3 py-1 rounded min-w-[70px]"
